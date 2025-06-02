@@ -1,0 +1,584 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --market-bg: #1e2a38; /* Dark blue-gray background */
+  --header-bg: #2c3e50; /* Slightly lighter header */
+  --text-color: #e0e6ed; /* Light text color */
+  --accent-color: #4a90e2; /* Blue accent */
+  --dropdown-bg: #34495e;
+  --dropdown-hover-bg: #4a5568;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --item-hover-bg: #253344;
+}
+
+body { /* Optional: set body font if not set globally */
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  background-color: var(--market-bg); /* To see component on dark bg */
+  height: auto;
+  overflow: auto;
+}
+
+.market-display-wrapper {
+  width: 100%;
+  /* max-width: 700px; Adjust as needed */
+  margin: 1px auto;
+  background-color: var(--market-bg);
+  color: var(--text-color);
+  /* border-radius: 8px; */
+  overflow: hidden; /* To contain rounded corners */
+  overflow-y: scroll;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.market-header {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--header-bg);
+  padding: 12px 16px;
+  height: 28px;
+  border-bottom: 1px solid var(--border-color); */
+  display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1a253a;
+      padding: 12px 16px;
+      height: 28px;
+      border-bottom: 1px solid var(--border-color);
+      gap: 20px;
+}
+
+.market-selector-container {
+  position: relative;
+}
+
+.market-selector-button {
+  background: rgba(255, 255, 255, 0.05); /* Fixed rgba syntax */
+  outline: none;
+  border: 1px solid var(--header-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px 12px;
+  width: 48vw;
+  justify-content: space-between;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.market-selector-button:hover {
+  background-color: var(--dropdown-hover-bg);
+}
+
+.market-selector-button span {
+  margin-right: 8px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@media (max-width: 320px) {
+  .market-selector-button{
+  width: 117px ;
+  }
+  div.column-headers {
+    border: none ;
+    /* background-color: red; */
+    outline: none;
+  }
+}
+@media (max-width: 375px) and (min-width: 321px){
+  .market-selector-button{
+  width: 150px ;
+  }
+  div.column-headers {
+    border: none ;
+    /* background-color: red; */
+    outline: none;
+  }
+}
+@media (max-width: 426px) and (min-width:376px) {
+  .market-selector-button{
+  width: 36vw ;
+  }
+  div.column-headers {
+    border: none ;
+    /* background-color: red; */
+    outline: none;
+    gap: 20px;
+  }
+}
+@media (max-width: 769px) and (min-width:427px) {
+  .market-selector-button{
+  width: 68vw;
+  }
+  .market-league-separator-2{
+    display: none;
+  }
+}
+
+.dropdown-chevron {
+  font-size: 0.8rem;
+}
+
+.market-dropdown-list {
+  position: absolute;
+  /* top: calc(100% + 1px); */
+  left: 0;
+  /* background-color: var(--dropdown-bg); */
+  background-color: rgb(0, 12, 36);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 100;
+  width: max-content; /* Adjust width based on content */
+  min-width: 200px;
+}
+
+.market-dropdown-list li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.market-dropdown-list li:hover {
+  background-color: var(--dropdown-hover-bg);
+}
+
+.market-dropdown-list li.active {
+  /* background-color: var(--accent-color); */
+  background-color:rgb(22, 99, 132);
+  color: white;
+  font-weight: 500;
+}
+
+.column-headers {
+  display: flex;
+      align-items: center;
+      /* gap: 20px; */
+      width: 50%;
+      justify-content: space-between;
+      border: 0.1px solid #000000;
+      /* border-bottom: none; */
+      padding: 1px 5px;
+}
+
+.column-header-item {
+  /* font-size: 0.9rem; */
+  /* font-weight: 500; */
+  /* color: var(--text-color); */
+  /* opacity: 0.8; */
+  text-transform: uppercase;
+  font-size: 11px;
+  /* font-weight: 500; */
+  color: rgb(255, 255, 255);
+  /* opacity: 0.8;
+}
+
+.league-list {
+  /* Max height and overflow for scrollable list if it gets too long */
+  /* max-height: 400px; */
+  /* overflow-y: auto; */
+}
+
+.league-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.league-item:last-child {
+  border-bottom: none;
+}
+
+.league-item:hover {
+  background-color: var(--item-hover-bg);
+}
+
+.league-info-left {
+  display: flex;
+  align-items: center;
+}
+
+.country-flag {
+  width: 24px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio, or set fixed height e.g., 16px */
+  margin-right: 12px;
+  border-radius: 2px; /* Optional: slight rounding for flags */
+}
+
+
+.country-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.league-name {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.league-chevron {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+/* ... (your existing styles for market-header, dropdown, etc.) ... */
+
+.league-list {
+  /* Styles for the list container if any */
+  /* margin-top: 10px; */
+}
+
+.league-item-container {
+  border-bottom: 1px solid var(--border-color);
+}
+.league-item-container:last-child {
+  border-bottom: none;
+}
+
+.league-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 7px;
+  height: 36px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.league-item-header:hover {
+  background-color: var(--item-hover-bg);
+}
+
+.league-info-left {
+  display: flex;
+  align-items: center;
+}
+
+.country-flag {
+  width: 24px;
+  height: auto;
+  margin-right: 12px;
+  border-radius: 2px;
+}
+
+.league-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 15.2px;
+}
+
+.country-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+  /* margin-bottom: 1px; */
+}
+
+.league-name {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.league-expansion-chevron { /* Renamed from league-chevron */
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.6;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Styles for the expanded match details section */
+.match-details-container {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly different background for expanded area */
+  padding: 0px 0px; /* No padding initially, padding will be on match-row */
+  animation: slideDownDetails 0.3s ease-out;
+}
+
+@keyframes slideDownDetails {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px; /* Adjust as needed, should be larger than content */
+  }
+}
+
+.match-row {
+ padding: 0px 5px;
+}
+.match-row:first-child {
+    border-top: none; /* No top border for the first match in the list */
+}
+
+.match-details{
+  display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: stretch;
+    padding: 0px 0px;
+    /* boder: 3px solid red; */
+    /* border-top: 1px; */
+    background: #313b4e;
+    border-radius: 5px;
+}
+.match-info {
+  display: flex;
+  align-items: center;
+  gap: 0px; /* Space between team names and scores */
+  padding: 4px; /* Space before odds */
+  min-width: 50vw; /* Ensure team names have enough space */
+  justify-content: space-between;
+}
+@media (max-width: 769px) {
+  .match-info{
+    min-width: 562px  !important;
+    /* background-color: red; */
+  }
+}
+@media (max-width: 426px) {
+  .match-info{
+    min-width: 214px  !important;
+    /* background-color: red; */
+  }
+}
+@media (max-width: 376px) {
+  .match-info{
+    min-width: 222px  !important;
+    /* background-color: red; */
+  }
+}
+@media (max-width: 326px) {
+  .match-info{
+    min-width: 152px  !important;
+    /* background-color: red; */
+  }
+}
+
+.team-names, .team-scores {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.team-names span:first-child,
+.team-scores span:first-child {
+  margin-bottom: 4px; /* Space between team1/score1 and team2/score2 */
+}
+
+.team-scores {
+  text-align: right;
+  font-weight: 500;
+  color: #f1c40f; /* Yellowish color for scores */
+}
+
+
+.odds-box {
+  background-color: #3a4759;
+  color: yellow;
+  padding: 10px 5px;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  /* Add this for the border style like second image */
+  border: 1px solid rgba(255, 255, 255, 0.15); 
+}
+
+
+.odds-box:hover {
+  background-color: #4a5568;
+}
+
+.match-footer {
+  grid-column: 1 / -1; /* Span across all columns */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  padding-left: 4px;
+  padding-right: 5px;
+  margin-top: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.838);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.match-time {
+  display: flex;
+  align-items: center;
+}
+
+.live-indicator {
+  color: #e74c3c; /* Red for live */
+  font-size: 0.6rem; /* Smaller dot */
+  margin-right: 6px;
+  animation: pulseLive 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseLive {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.lock-icon {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.no-matches-message {
+  padding: 15px 20px;
+  text-align: center;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Dynamic grid columns for match-odds-calender based on number of headers */
+.match-odds.headers-2 { grid-template-columns: repeat(2, 1fr); }
+.match-odds.headers-3 { grid-template-columns: repeat(3, 1fr); padding: 7px; }
+/* Add more if you have market types with more than 3 headers */
+/* --------------------------------------------- */
+.market-league-separator {
+  height: 5px;
+  background-color: #000;
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid #111; /* optional subtle border */
+  border-bottom: 1px solid #111;
+}
+.market-league-separator-2 {
+  height: 3vh;
+  background-color: #000;
+  width: 0.55%;
+  margin: 0;
+  border-top: 1px solid #111; /* optional subtle border */
+  border-bottom: 1px solid #111;
+}
+
+
+
+
+/* ----------------------------------- flag*/
+.odds-box.flag-box {
+  padding: 4px 6px;
+  flex-direction: column; /* Stack flag above odds value */
+}
+.odds-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.odds-value {
+  font-weight: bold;
+}
+
+/* .green-arrow {
+  color: green;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 2px;
+  right: 2px;   
+   transform: rotate(49deg);
+} */
+
+
+/* .green-arrow2 {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid limegreen;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotate(-93deg)
+} */
+
+.green-arrow2 {
+  color: transparent;
+  font-size: 10px;
+  font-weight: 15px;
+  position: absolute;
+  top: 0px;
+  right: 0px;   
+   transform: rotate(49deg);
+   /* display: none; */
+}
+
+.green-arrow2 {
+  width: 0px;
+  height: 0px;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid limegreen; 
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  transform: rotate(-93deg);
+  /* display: block; */
+}
+
+
+.red-arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid rgb(173, 3, 3); /* Triangle color */
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* transform: rotate(272deg) */
+  transform: rotate(-93deg)
+}
+
+
+.scroll-wrapper {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top:hover {
+  background-color: #0056b3;
+}
+

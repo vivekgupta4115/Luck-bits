@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+:root {
+  --options-bg: #22275b; /* Dark blue from your previous theme */
+  --options-icon-color: #ecf0f1; /* Light gray/off-white */
+  --options-icon-hover-color: #ffffff; /* Brighter white on hover */
+  --options-button-bg: rgba(255, 255, 255, 0.08); /* Subtle box background */
+  --options-button-border: rgba(255, 255, 255, 0.6); /* Subtle border for the box */
+  --options-search-button-border: rgba(255, 255, 255, 0.15); /* Subtle border for the box */
+  --options-button-hover-bg: rgba(255, 255, 255, 0.15); /* Slightly more visible on hover */
+  --options-button-hover-border: rgba(52, 152, 219, 0.7); /* Accent border on hover */
+}
+
+.options-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px; /* Adjusted padding */
+  /* background-color: var(--options-bg); */
+  color: var(--options-icon-color);
+  font-family: 'Poppins', sans-serif;
+  height: 60px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.options-left,
+.options-right {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Spacing between icon boxes */
+}
+
+.option-button {
+  /* background-color: var(--options-button-bg); */
+  border: 1px solid var(--options-button-border); /* Add border for the box */
+  color: var(--options-icon-color);
+  cursor: pointer;
+  width: 40px;  /* Define width for the box */
+  height: 40px; /* Define height for the box */
+  border-radius: 8px; /* Rounded corners for the box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.option-button:hover {
+  /* background-color: var(--options-button-hover-bg); */
+  color: var(--options-icon-hover-color);
+  /* border-color: var(--options-button-hover-border); */
+  transform: translateY(-1px); /* Slight lift effect */
+}
+
+.option-button:active {
+  transform: translateY(0px); /* Press down effect */
+}
+
+.option-icon {
+  font-size: 1.2rem; /* Adjust icon size to fit well within the box */
+}
+
+/* Specific styling if the search button is different */
+.search-button {
+  /* If search button needs different styling, add here */
+  color: rgb(102 109 118);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .options-bar-container {
+    margin-top: 10px;
+    padding-inline-start: 7px;
+    padding-inline-end: 7px;
+    height: 36px;
+  }
+  .option-button {
+    width: 36px;
+    height: 28px;
+    padding: 0px 23px;
+    border-radius: 5px;
+  }
+  .option-icon {
+    font-size: 1rem;
+  }
+  .options-left,
+  .options-right {
+    gap: 8px;
+  }
+  .search-button{
+        /* color: rgb(102 109 118); */
+    /* width: 26px; */
+    height: 27px;
+    padding: 17px;
+    /* border-radius: 0px; */
+    color: rgb(102 109 118);
+    width: 36px;
+    /* height: 23px; */
+    /* padding: 0px 23px; */
+    border-radius: 5px;
+    border: 1px solid var(--options-search-button-border);
+  }
+}
+
+/* ------------------------------------------ */
+
+/* .search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+} */
+
+.search-input {
+  margin-left: 0px;
+  padding: 7px 5px;
+  border: 1px solid rgb(18, 29, 51); /* Updated border color */
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(18 29 51);
+  font-size: 12px;
+  font-weight: 400;
+  /* padding-inline-start: 8px; */
+}
+
+/* .search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+} */
+/* .search-input {
+  flex: 1;
+  margin-left: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--options-search-button-border);
+  border-radius: 4px;
+  background-color: var(--options-button-hover-bg);
+  color: var(--options-icon-color);
+} */
+
+
+/* ---------------------*/
+.options-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.options-left {
+  display: flex;
+  gap: 10px;
+}
+
+.options-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+}
+/* 
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+} */
+
+.search-input {
+  flex: 1;
+  padding: 6px 12px;
+  border: 1px solid rgb(18, 29, 51); /* Updated border color */
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-button {
+  flex: 0;
+  margin-left: 0px;
+  color: rgb(255 255 255 / 40%);
+}
+
+/* -------------- */
+/* .search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.search-slide {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  white-space: nowrap;
+}
+
+.search-slide.show {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.search-slide.hide {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.search-input {
+  padding: 6px 12px;
+  border: 1px solid rgb(18, 29, 51);
+  border-radius: 4px;
+  background-color: rgb(18 29 51);
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  outline: none;
+} */
+
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+/* Wrapper with animation */
+.search-wrapper {
+  overflow: hidden;
+  width: 0;
+  transition: width 0.3s ease;
+  margin-right: 10px; /* Space between input and button */
+}
+
+.search-wrapper.show {
+  width: 100%; /* Or whatever width you'd like the input to be */
+}
+
+.search-wrapper.hide {
+  width: 0;
+}
+
+/* The actual input */
+.search-input {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid rgb(18, 29, 51);
+  border-radius: 4px;
+  background-color: rgb(18 29 51);
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  outline: none;
+}

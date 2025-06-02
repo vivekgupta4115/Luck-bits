@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+:root {
+  /* --navbar-bg: #2c3e50; */
+  --navbar-text-color: #c5c9ca;
+  --navbar-active-color: #3498db;
+  --navbar-underline-color: #3498db;
+  --navbar-divider-color: rgba(236, 240, 241, 0.2); /* Color for the divider */
+  --navbar-button-bg: #3498db;
+  --navbar-button-hover-bg: #2980b9;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */ /* We'll let flex-grow handle spacing */
+  padding: 0 25px;
+  height: 37px;
+  /* background-color: #22275b;  */
+  color: var(--navbar-text-color);
+  /* font-family: 'Poppins', sans-serif; */
+  text-transform: uppercase;
+  font-family: 'Roboto', Arial;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo { /* Added to give logo a fixed or shrinkable space */
+  flex-shrink: 0; /* Prevent logo from shrinking too much */
+  margin-right: 20px; /* Add some space between logo and menu */
+}
+
+.navbar-logo a {
+  color: var(--navbar-text-color);
+  text-decoration: none;
+  font-size: 1.8rem;
+  /* font-weight: 600; */
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1; /* Allows the menu to take up available space */
+  justify-content: flex-start; /* Align items to the start, or use space-around/evenly */
+}
+
+.navbar-item {
+  padding: 0;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Each item will grow equally to fill the .navbar-menu space */
+  /* border: 1px solid red; */ /* For debugging item width */
+}
+
+/* Divider line */
+.navbar-item:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 100%;
+  background-color: var(--navbar-divider-color);
+}
+
+.navbar-item a {
+  color: var(--navbar-text-color);
+  /* color: gray; */
+  text-decoration: none;
+  padding: 0 10px; /* Reduced horizontal padding as item itself expands */
+  width: 100%; /* Make 'a' tag take full width of 'li' */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center text within the 'a' tag */
+  font-size: 1rem;
+  /* font-weight: 100; */
+  transition: color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center; /* Ensure text is centered */
+}
+
+/* Underline pseudo-element */
+.navbar-item a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  width: 100%; /* Full width of the 'a' tag */
+  height: 3px;
+  background-color: var(--navbar-underline-color);
+  transition: transform 0.3s ease-out;
+  transform-origin: left;
+}
+
+/* Hover state */
+.navbar-item:hover a {
+  /* color: var(--navbar-active-color); */
+  color: #ecf0f1;
+}
+
+.navbar-item:hover a::after {
+  transform: scaleX(1);
+}
+
+/* Active state */
+.navbar-item.active a {
+  /* color: var(--navbar-active-color); */
+  /* font-weight: 600; */
+}
+
+.navbar-item.active a::after {
+  transform: scaleX(1);
+  background-color: var(--navbar-active-color);
+}
+
+.navbar-actions { /* Added to give actions a fixed or shrinkable space */
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Prevent actions from shrinking too much */
+  margin-left: 20px; /* Add some space between menu and actions */
+}
+
+.navbar-button {
+  background-color: var(--navbar-button-bg);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  /* font-weight: 500; */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar-button:hover {
+  background-color: var(--navbar-button-hover-bg);
+}
+
+/* Basic responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0px; /* Reduce overall padding */
+  }
+  .navbar-logo {
+    margin-right: 10px; /* Reduce space */
+  }
+  .navbar-logo a {
+    font-size: 1.5rem;
+  }
+  .navbar-menu {
+    /* On mobile, you might want to revert to non-expanding items or use a hamburger menu */
+    /* For now, let's just reduce padding within items */
+    justify-content: center; /* Or flex-start if you prefer */
+  }
+  .navbar-item a {
+    padding: 0 0px; /* Adjust padding for smaller screens */
+    font-size: 10px;
+  }
+  .navbar-item a::after {
+    height: 2px;
+  }
+  .navbar-item:not(:first-child)::before {
+    height: 100%;
+  }
+  .navbar-actions {
+    margin-left: 10px; /* Reduce space */
+  }
+  .navbar-button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  /* Example: Stack logo and actions, hide menu for hamburger */
+  /* .navbar-menu {
+    display: none;
+  } */
+  .navbar-container {
+    justify-content: space-between; /* Logo and actions will space out */
+  }
+  /* You would add styles for a hamburger button here */
+}
+/* --------- */
+.navbar-container {
+  position: sticky;
+  top: 8vh;
+  z-index: 1000; /* Ensure it stays on top of other content */
+  /* background-color: rgb(0 12 36);  */
+  background-color: #0d182f; 
+  /* background-color: rgb(24, 73, 171); Adjust to match your design */
+ 
+}
+
+/* Example styling */
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* gap: 20px; */
+}
+
+.navbar-item {
+  cursor: pointer;
+  padding: 0px 0px;
+  /* font-weight: 0; */
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+/* .navbar-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+} */
+
+/* .navbar-item.active {
+  color: #0057ff;
+  border-bottom: 2px solid #0057ff;
+} */

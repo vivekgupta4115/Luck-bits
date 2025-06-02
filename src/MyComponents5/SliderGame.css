@@ -1,0 +1,14 @@
+/* SliderGame.css */
+
+.sticky-item {
+  left: 0;
+  right: 0;
+  position: sticky;
+  z-index: 10;
+}
+
+.unselected-item {
+  position: relative;
+  z-index: 1;
+}
+
