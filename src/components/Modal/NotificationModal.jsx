@@ -22,13 +22,27 @@ const settings = [
   },
 ];
 
+const BitSlip = [
+  {
+    value: "Always ask",
+    labels:"FaAngleDown"
+  },
+]
+
 function NotificationModal({ setIsWalletModal }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [expandedSetting, setExpandedSetting] = useState(null);
+  const [expandedSettingBitSlip, setExpandedSettingBitSlip] = useState(null);
+  const [selectedBitSlip, setSelectedBitSlip] = useState("");
 
   const handleExpand = (settingLabel) => {
     setExpandedSetting(prev => (prev === settingLabel ? null : settingLabel));
   };
+
+   const handleExpandBitSlip = (BitSlipLabel) => {
+    setExpandedSettingBitSlip(prev => (prev === BitSlipLabel ? null : BitSlipLabel));
+  };
+
 
   const handleOpenModalSetting = () => {
     setIsOpenModal("setting");
@@ -53,6 +67,10 @@ function NotificationModal({ setIsWalletModal }) {
     "Language": ["English", "Italiano", "Russian", "Português"],
     "Time format": ["12h", "24h"]
   };
+
+  const BitSlipOptions = {
+    "FaAngleDown": ["Always ask", "Accept Higher odds", "Accept Any odds"]
+  }
 
   const betAmounts = ["100000","200000","100000"]
 
@@ -224,10 +242,41 @@ function NotificationModal({ setIsWalletModal }) {
               <div className="flex justify-center bg-white/20 rounded-t-md border-b-2 border-[#3498db]">
                 <h2 className="text-[12px] p-3">BitSlip</h2>
               </div>
-              <div className="bg-white/5 rounded-b-md h-[36px] flex items-center gap-3 text-[16px] pt-6 pb-6 ps-1">
-                <IoMdSettings className="text-white/70 text-[18px] "/>
-                <span className="text-white/70">Always ask</span>
-                <FaAngleDown className="text-white/70"/>
+
+              <div className="relative">
+                {BitSlip.map((item, index) => (
+                <div key={index} className="relative">
+                  <div
+                    className="bg-white/5 rounded-b-md h-[36px] flex items-center gap-3 text-[16px] pt-6 pb-6 ps-1 cursor-pointer"
+                    onClick={() => handleExpandBitSlip(item.labels)}
+                  >
+                    <IoMdSettings className="text-white/70 text-[18px]" />
+                    <span className="text-white/70">{item.value}</span>
+                    <FaAngleDown className="text-white/70" />
+                  </div>
+
+                  {expandedSettingBitSlip === item.labels && (
+                    <div className="absolute top-full left-0 border border-white/30 rounded-[8px] bg-[#000C24] text-white/90 text-sm shadow-lg z-50  flex flex-col ">
+                      {BitSlipOptions[item.labels].map((option, idx) => (
+                        <div
+                          key={idx}
+                          className={`px-3 py-2 cursor-pointer ${
+                          selectedBitSlip === option ? "bg-blue-400 text-white/90" : 
+                          "text-white/60"}`}
+                          onClick={() => {
+                            BitSlip[index].value = option;
+                            setExpandedSettingBitSlip(null);
+                            setSelectedBitSlip(option);
+                          }}
+                        >
+                          {option}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+                
               </div>
 
               <div className="w-[100%] h-[7rem]">
