@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { GiEuropeanFlag } from "react-icons/gi";
+import { TbWorld } from "react-icons/tb";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { MdOutlineStarBorderPurple500, MdKeyboardArrowRight } from "react-icons/md";
 
-const DropdownSection = ({ title = "Europe", count = 9, items = [] }) => {
+const DropdownSection = ({ title = "Europe", count = 9, items = [], Icon = GiEuropeanFlag, imageSrc}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -14,7 +15,13 @@ const DropdownSection = ({ title = "Europe", count = 9, items = [] }) => {
         className=' h-[36px] px-[10px] rounded-[4px] w-full flex justify-between items-center cursor-pointer bg-[#1a253a]'
         onClick={toggleDropdown}
       >
-        <GiEuropeanFlag className='text-white/90 flex-shrink-0 me-[10px] w-[22px] h-[14px]' />
+        {/* Icon or Image Flag */}
+        {imageSrc ? (
+          <img src={imageSrc} alt={title} className='w-[22px] h-[14px] rounded-[2px] me-[10px] object-cover' />
+        ) : Icon ? (
+          <Icon className='text-white flex-shrink-0 me-[10px] w-[22px] h-[14px] bg-blue-400 rounded-[4px]' />
+        ) : null}
+        
         <div className='flex justify-center flex-col flex-auto h-full overflow-hidden whitespace-nowrap overflow-ellipsis'>
           <p className='text-[14px] text-white/90 me-[10px]'>{title}</p>
         </div>

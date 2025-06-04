@@ -1,5 +1,7 @@
 import React from 'react';
 import DropdownSection from './DropdownSection';
+import { GiEuropeanFlag } from "react-icons/gi";
+import { TbWorld } from "react-icons/tb";
 const Winner = () => {
   const items1 = [
     { title: 'UEFA Nations League', count: 2 },
@@ -34,11 +36,11 @@ const Winner = () => {
 
   return (
     <div className="space-y-2">
-      <DropdownSection title="Europe" count={7} items={items1} />
-      <DropdownSection title="World" count={44} items={items2} />
-      <DropdownSection title="England" count={20} items={items3} />
-      <DropdownSection title="Germany" count={5} items={items4} />
-      <DropdownSection title="Spain" count={56} items={items5} />
+      <DropdownSection title="Europe" Icon={GiEuropeanFlag} count={7} items={items1} />
+      <DropdownSection title="World" Icon={TbWorld} count={44} items={items2} />
+      <DropdownSection title="England" imageSrc="/flag/England.png" count={20} items={items3} />
+      <DropdownSection title="Germany" imageSrc="/flag/Germany.png" count={5} items={items4} />
+      <DropdownSection title="Spain" imageSrc="/flag/Spain.jpeg" count={56} items={items5} />
     </div>
   );
 };

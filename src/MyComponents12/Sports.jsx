@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import Header2 from "../MyComponent/Header2";
 import logo from "../assets/sports/download.png";
 import { FaPlus } from "react-icons/fa6";
 import { FaCalendar } from "react-icons/fa";
 import Game from "../MyComponent/Game";
-import Table from "../MyComponent/Table";
-import { MdOutlineWatchLater } from "react-icons/md";
-// import Option from "../MyComponent/Option";
 import SportsSearchOption from '../MyComponents13/sportsComponents/SportsSearchOption'
 import Winner from "./Winner";
 import { IoTrophy } from "react-icons/io5";
